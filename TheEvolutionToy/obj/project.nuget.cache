@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "7M/+Eea6KxQqDqWVUBm8/KUeTPKmvobdOnyFU8rWE8r8bHGlrXAR4Ssf8TcE67qWv8WMKqPbZTImZuqTVOWwJA==",
+  "dgSpecHash": "9en6tn/+o29IVbcLO0AQxHszQeQvEbnMyyEzyvxgKOdZMQ735PXTAV/R51N2tj3pVA2MWRVmeCF5jWkNtIGuGQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\Ilia-\\Desktop\\Code\\The Evolution Toy\\TheEvolutionToy\\TheEvolutionToy\\TheEvolutionToy.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\Ilia-\\.nuget\\packages\\opentk.windowing.common\\4.7.7\\opentk.windowing.common.4.7.7.nupkg.sha512",
     "C:\\Users\\Ilia-\\.nuget\\packages\\opentk.windowing.desktop\\4.7.7\\opentk.windowing.desktop.4.7.7.nupkg.sha512",
     "C:\\Users\\Ilia-\\.nuget\\packages\\opentk.windowing.graphicslibraryframework\\4.7.7\\opentk.windowing.graphicslibraryframework.4.7.7.nupkg.sha512",
+    "C:\\Users\\Ilia-\\.nuget\\packages\\stbimagesharp\\2.27.13\\stbimagesharp.2.27.13.nupkg.sha512",
     "C:\\Users\\Ilia-\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\5.0.0\\system.runtime.compilerservices.unsafe.5.0.0.nupkg.sha512"
   ],
   "logs": []

@@ -9,12 +9,14 @@ namespace TheEvolutionToy.TheEvolutionSpace
         public float R;
         public float G;
         public float B;
+        public float A;
 
-        public Color(float r, float g, float b)
+        public Color(float r, float g, float b, float a=1)
         {
             R = r;
             G = g;
             B = b;
+            A = a;  
         }
     }
     internal class Ceil
@@ -108,6 +110,9 @@ namespace TheEvolutionToy.TheEvolutionSpace
         public float attachX, attachY;
         public int type;
 
+        List<Neyron> Input = new();
+        List<Neyron> Output = new();
+
         public Ceil(Brain b, int type ,Color color,float attachX=0, float attachY=0)
         {
             IsAttachedToBrain = true;
@@ -128,6 +133,15 @@ namespace TheEvolutionToy.TheEvolutionSpace
             AttachedToCeil = c;
         }
 
+        public void addInput(Neyron n)
+        {
+            Input.Add(n);
+        }
+
+        public void addOutput(Neyron n)
+        {
+            Input.Add(n);
+        }
 
 
 

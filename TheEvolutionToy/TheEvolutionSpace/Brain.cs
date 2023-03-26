@@ -89,14 +89,99 @@ namespace TheEvolutionToy.TheEvolutionSpace
         List<Column> Columns;
 
         public float X, Y;
-
+        public List<Ceil> ceils;
         public Brain(String DNA)
         {
+            
+        }
+
+
+        public void buildBrain()
+        {
+
             Columns = new List<Column>();
             Columns.Add(new Column(0, 5));
             Columns.Add(new Column(5, 5));
             Columns.Add(new Column(5, 0));
             Columns.Add(new Column(0));
+
+            var first = Columns[0].Neyrons;
+            var last = Columns[Columns.Count-1].Neyrons;
+
+            foreach (Ceil c in ceils)
+            {
+                switch(c.type)
+                {
+                    
+                    case Ceil.FANG:
+                    case Ceil.BONE:
+                    case Ceil.USUAL_CEIL:
+                        Neyron touch = new(5);
+                        Neyron damage = new(5);
+                        c.addInput(touch);
+                        c.addInput(damage);
+                        first.Add(touch);
+                        first.Add(damage);
+                        break;
+                    case Ceil.STOMACH:
+                        touch = new(5);
+                        damage = new(5);
+                        Neyron consume = new(5);
+                        c.addInput(consume);
+                        c.addInput(touch);
+                        c.addInput(damage);
+                        first.Add(touch);
+                        first.Add(damage);
+                        first.Add(consume);
+                        break;
+                    case Ceil.THURSTER:
+                        touch = new(5);
+                        damage = new(5);
+                        Neyron speed = new(5);
+                        c.addInput(speed);
+                        c.addInput(touch);
+                        c.addInput(damage);
+                        first.Add(touch);
+                        first.Add(damage);
+                        first.Add(speed);
+
+                        Neyron move = new();
+                        c.addOutput(move);
+                        last.Add(move);
+                        break;
+
+                    case Ceil.EYE:
+                        touch = new(5);
+                        damage = new(5);
+                        Neyron R = new(5);
+                        Neyron G = new(5);
+                        Neyron B = new(5);
+                        Neyron dir = new(5);
+                        c.addInput(R);
+                        c.addInput(G);
+                        c.addInput(B);
+                        c.addInput(dir);
+                        c.addInput(touch);
+                        c.addInput(damage);
+                        first.Add(touch);
+                        first.Add(damage);
+                        first.Add(R);
+                        first.Add(G);
+                        first.Add(B);
+                        first.Add(dir);
+
+                        Neyron pupil = new();
+                        c.addOutput(pupil);
+                        last.Add(pupil);
+
+                        break;
+
+
+
+                }
+            }
+
+            
         }
 
     }
