@@ -57,6 +57,15 @@ namespace TheEvolutionToy.TheEvolutionSpace
             }
         }
 
+        public void resetColumn(int n, int nextLen)
+        {
+            Neyrons.Clear();
+            for (int i = 0; i < n; i++)
+            {
+                Neyrons.Add(new Neyron(nextLen));
+            }
+        }
+
         public void Clear()
         {
             for (int i = 0; i < Neyrons.Count; i++)
@@ -86,13 +95,20 @@ namespace TheEvolutionToy.TheEvolutionSpace
     }
     internal class Brain
     {
-        List<Column> Columns;
+        public List<Column>? Columns;
 
         public float X, Y;
         public List<Ceil> ceils;
         public Brain(String DNA)
         {
-            
+            ceils = new();
+        }
+
+        public Brain()
+        {
+            ceils = new();
+            X = 0;
+            Y = 0;
         }
 
 
@@ -100,13 +116,24 @@ namespace TheEvolutionToy.TheEvolutionSpace
         {
 
             Columns = new List<Column>();
-            Columns.Add(new Column(0, 5));
-            Columns.Add(new Column(5, 5));
-            Columns.Add(new Column(5, 0));
+
+            int midcols = 5;
+            if (ceils.Count>3)
+            {
+                midcols=(int)(ceils.Count*0.8f);
+            }
+
+                Columns.Add(new Column(0, midcols));
+            Columns.Add(new Column(midcols, midcols));
+            Columns.Add(new Column(midcols, midcols));
+            Columns.Add(new Column(midcols, 0));
             Columns.Add(new Column(0));
 
             var first = Columns[0].Neyrons;
             var last = Columns[Columns.Count-1].Neyrons;
+            var almostlast = Columns[Columns.Count-2];
+
+            
 
             foreach (Ceil c in ceils)
             {
@@ -116,17 +143,17 @@ namespace TheEvolutionToy.TheEvolutionSpace
                     case Ceil.FANG:
                     case Ceil.BONE:
                     case Ceil.USUAL_CEIL:
-                        Neyron touch = new(5);
-                        Neyron damage = new(5);
+                        Neyron touch = new(midcols);
+                        Neyron damage = new(midcols);
                         c.addInput(touch);
                         c.addInput(damage);
                         first.Add(touch);
                         first.Add(damage);
                         break;
                     case Ceil.STOMACH:
-                        touch = new(5);
-                        damage = new(5);
-                        Neyron consume = new(5);
+                        touch = new(midcols);
+                        damage = new(midcols);
+                        Neyron consume = new(midcols);
                         c.addInput(consume);
                         c.addInput(touch);
                         c.addInput(damage);
@@ -135,9 +162,9 @@ namespace TheEvolutionToy.TheEvolutionSpace
                         first.Add(consume);
                         break;
                     case Ceil.THURSTER:
-                        touch = new(5);
-                        damage = new(5);
-                        Neyron speed = new(5);
+                        touch = new(midcols);
+                        damage = new(midcols);
+                        Neyron speed = new(midcols);
                         c.addInput(speed);
                         c.addInput(touch);
                         c.addInput(damage);
@@ -151,12 +178,12 @@ namespace TheEvolutionToy.TheEvolutionSpace
                         break;
 
                     case Ceil.EYE:
-                        touch = new(5);
-                        damage = new(5);
-                        Neyron R = new(5);
-                        Neyron G = new(5);
-                        Neyron B = new(5);
-                        Neyron dir = new(5);
+                        touch = new(midcols);
+                        damage = new(midcols);
+                        Neyron R = new(midcols);
+                        Neyron G = new(midcols);
+                        Neyron B = new(midcols);
+                        Neyron dir = new(midcols);
                         c.addInput(R);
                         c.addInput(G);
                         c.addInput(B);
@@ -176,12 +203,16 @@ namespace TheEvolutionToy.TheEvolutionSpace
 
                         break;
 
-
+                        
 
                 }
             }
+            Neyron helper = new(midcols);
+            first.Add(helper);
+            helper.Value = 1;
 
-            
+            almostlast.resetColumn(midcols,last.Count);
+
         }
 
     }

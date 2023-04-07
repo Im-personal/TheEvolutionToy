@@ -1,5 +1,6 @@
 ﻿
 using System.Drawing;
+using System.Reflection.Metadata.Ecma335;
 
 namespace TheEvolutionToy.TheEvolutionSpace
 {
@@ -18,6 +19,15 @@ namespace TheEvolutionToy.TheEvolutionSpace
             B = b;
             A = a;  
         }
+
+        public static Color operator/(Color c, float m)
+        {
+            var r = c.R / m;
+            var g = c.G / m;
+            var b = c.B / m;
+            return new(r, g, b);
+        }
+
     }
     internal class Ceil
     {
@@ -109,6 +119,7 @@ namespace TheEvolutionToy.TheEvolutionSpace
         public Ceil? AttachedToCeil;
         public float attachX, attachY;
         public int type;
+        public float direction = 0;
 
         List<Neyron> Input = new();
         List<Neyron> Output = new();
@@ -143,8 +154,28 @@ namespace TheEvolutionToy.TheEvolutionSpace
             Input.Add(n);
         }
 
+        public static Color GetDefault(int type)
+        {
 
+            switch(type)
+            {
+                case USUAL_CEIL:
+                    return new(0, 1, 0);
+                case BONE:
+                    return new(1, 1, 1);
+                case FANG:
+                    return new(1, 0, 0);
+                case EYE:
+                    return new(0, 0, 0);
+                case THURSTER:
+                    return new(0, 0, 1);
+                case STOMACH:
+                    return new(1, 0, 220 / 255f, 1);
+            }
+            return new(0, 0, 0);
+        }
 
+        
 
     }
 }
